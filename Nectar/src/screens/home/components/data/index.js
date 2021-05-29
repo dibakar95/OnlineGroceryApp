@@ -1,19 +1,19 @@
 export const Data=[
-    {
+    {   
         fruit:"Banana",
         price:50,
         items:"7pc",
         color:"#FFD37E"
         
     },
-    {
+    {    
         fruit:"apple",
         price:100,
         items:"1Kg",
         color:"red"
         
     },
-    {
+    {   
         fruit:"Orange",
         price:80,
         items:"1Kg",

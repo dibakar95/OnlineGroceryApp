@@ -12,7 +12,7 @@ import {Carrot} from '../../assets/icons';
 import {getHeight, getWidth} from '../../utils';
 import {FontSize, Fonts, Colors} from '../../theme';
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
   return (
     <ImageBackground style={styles.mainContainer} source={Home}>
       <View style={styles.secondContainer} />
@@ -23,7 +23,7 @@ const Welcome = () => {
         <Text style={styles.text2}>
           Ger your groceries in as fast as one hour
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("Home")} >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
       </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   View,
   Text,
@@ -8,37 +8,62 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import {Banana} from '../../assets/images';
 import {Fonts, FontSize} from '../../theme';
 import {getWidth} from '../../utils';
-import {Data} from '../home/components/data'
+import {Data} from '../home/components/data';
+import CustomModal from '../home/components/customModal';
 
-
-const Item = ({ items,color,fruit,price, }) => (
-    <View style={styles.mainContainerFlat}>
-    <Text style={{...styles.fruitsText,color:`${color}`}}>{fruit}</Text>
-    <Text style={{...styles.fruitsItem,color:`${color}`}}>{items}</Text>
-    <View style={styles.fruitsPriceContainer}>
-      <Text style={{...styles.fruitsPrice,color:`${color}`}}>Rs{price}</Text>
-      <TouchableOpacity style={styles.button}>
-        <View style={styles.plus1} />
-        <View style={styles.plus2} />
-      </TouchableOpacity>
-    </View>
-  </View>
-  );
-  
-
-
-const HomeContainer = props => {
-    const renderItem = ({ item}) => (
-        <Item items={item.items} fruit={item.fruit} price={item.price} color={item.color} id={item.id} />
-      );
+const Item = ({items, color, fruit, price, handleItem,index}) => {
 
   return (
-<SafeAreaView>
+    <View style={styles.mainContainerFlat} key={index}>
+      <Text style={{...styles.fruitsText, color: `${color}`}}>{fruit}</Text>
+      <Text style={{...styles.fruitsItem, color: `${color}`}}>{items}</Text>
+      <View style={styles.fruitsPriceContainer}>
+        <Text style={{...styles.fruitsPrice, color: `${color}`}}>
+          Rs{price}
+        </Text>
+        <TouchableOpacity style={styles.button} onPress={()=>handleItem(index)}>
+          <View style={styles.plus1} />
+          <View style={styles.plus2} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const HomeContainer = props => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [fruitData, setFruitData] = useState([]);
+  const [fruitId, setFruitId] = useState();
+
+
+  const renderItem = ({item, index}) => {
+   
+    return (
+      <Item
+        items={item.items}
+        fruit={item.fruit}
+        price={item.price}
+        color={item.color}
+        handleItem={_handleItem}
+        index={index}
+      />
+    );
+  };
+
+
+  const _handleItem = (index) => {
+    setModalVisible(true);
+    setFruitData(Data);
+    setFruitId(index)
+  };
+
+  return (
+    <SafeAreaView>
       <View style={styles.mainContainer}>
         <View style={styles.search}>
           <View style={styles.search1} />
@@ -49,21 +74,25 @@ const HomeContainer = props => {
             placeholder="Search Store"
           />
         </View>
-        </View> 
+      </View>
 
- <View style={{marginTop:getWidth(60),marginBottom:10}}>
-
+      <View style={{marginTop: getWidth(60), marginBottom: getWidth(60)}}>
         <FlatList
-        bounces={false}
-        data={Data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        numColumns={2}
+          bounces={false}
+          data={Data}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => String(index)}
+          numColumns={2}
+          modalVisible={modalVisible}
+        />
+      </View>
+      <CustomModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        fruitData={fruitData}
+        fruitId={fruitId}
       />
-</View>
-    
-
-      </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
@@ -74,7 +103,7 @@ const styles = StyleSheet.create({
   search: {
     flexDirection: 'row',
     alignSelf: 'center',
-    marginTop:getWidth(10)
+    marginTop: getWidth(10),
   },
   search1: {
     width: getWidth(30),
@@ -91,17 +120,14 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 15,
   },
   mainContainerFlat: {
-   
     width: getWidth(173),
     backgroundColor: 'darkgrey',
     height: getWidth(180),
     justifyContent: 'space-between',
     paddingVertical: 20,
     borderRadius: 10,
-    marginTop:30,
-    marginLeft:10
-    
-    
+    marginTop: 30,
+    marginLeft: 10,
   },
   fruitsText: {
     fontSize: 20,
@@ -144,5 +170,3 @@ const styles = StyleSheet.create({
   },
 });
 export default HomeContainer;
-
-
