@@ -1,0 +1,63 @@
+import {Platform} from 'react-native';
+export const Fonts = {
+  BoogalooRegular: 'Boogaloo-Regular',
+  NunitoSansBlack: 'NunitoSans-Black',
+  NunitoSansBold: 'NunitoSans-Bold',
+  NunitoSansExtraBold: 'NunitoSans-ExtraBold',
+  NunitoSansExtraLight: 'NunitoSans-ExtraLight',
+  NunitoSansLight: 'NunitoSans-Light',
+  NunitoSansRegular: 'NunitoSans-Regular',
+  NunitoSansSemiBold: 'NunitoSans-SemiBold',
+  NunitoSansSemiBoldItalic: 'NunitoSans-SemiBoldItalic',
+  NunitoSansItalic: 'NunitoSans-Italic',
+  NunitoSansLightItalic: 'NunitoSans-LightItalic',
+  SFProDisplaySemibold: 'SFProDisplay-Semibold',
+  SFProDisplayBold: 'SFProDisplay-Bold',
+  SFProDisplayRegular: 'SFProDisplay-Regular',
+  PoppinsRegular: 'Poppins-Regular',
+  MulishRegular: 'Mulish-Regular',
+  ArialRoundedMTBold: 'ArialRoundedMTBold',
+  ArialRoundedMT: 'ArialRoundedMT',
+  MontserratSemiBold: 'Montserrat-SemiBold',
+  MontserratBold: 'Montserrat-Bold',
+  MontserratMedium: 'Montserrat-Medium',
+  MontserratRegular: 'Montserrat-Regular',
+  HelveticaBold: 'Helvetica-Bold',
+  HelveticaLight: 'Helvetica-light',
+  HelveticaRegular: Platform.select({
+    ios: 'Helvetica',
+    android: 'Helvetica-regular',
+  }),
+  Raleway: Platform.select({
+    ios: 'Raleway',
+    android: 'Raleway-Regular',
+  }),
+  Righteous: Platform.select({
+    ios: 'Righteous',
+    android: 'Righteous-Regular',
+  }),
+  PacificoRegular: 'Pacifico-Regular',
+  ChaloopsBold: 'Chaloops-Bold',
+  SancreekRegular: Platform.select({
+    ios: 'Sancreek-Regular',
+    android: 'Sancreek-Regular',
+  }),
+  IfcInsane: Platform.select({
+    ios: 'IFC INSANE RODEO',
+    android: 'IFC-INSANE-RODEO-Regular',
+  }),
+  Play: Platform.select({
+    ios: 'Play',
+    android: 'Play-Regular',
+  }),
+  PlayBold: Platform.select({
+    ios: 'Play-Bold',
+    android: 'Play-Bold',
+  }),
+  KomikaAxis: Platform.select({
+    ios: 'Komika Axis',
+    android: 'KOMIKAX_',
+  }),
+  KorolevMedium: 'Korolev-Medium',
+  KorolevBold: 'Korolev-Bold',
+};
