@@ -5,7 +5,7 @@ export const FontSize = {
   xSmall_10: base * 0.625, // 10
   small_12: base * 0.75, // 12
   mediumSmall_14: base * 0.875, // 14
-  base_16, // 16
+  base, // 16
   mediumlarge_18: base * 1.125, // 18
   large_20: base * 1.25, // 20
   mlarge_22: base * 1.375, // 22
