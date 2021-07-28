@@ -9,7 +9,7 @@ const Route = () => {
   const IsUser = true;
   return (
     <NavigationContainer>
-      {IsUser ? <AppStack/> : <AuthStack/>}
+      {!IsUser ? <AppStack/> : <AuthStack/>}
     </NavigationContainer>
 
   );
