@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Text,
@@ -12,25 +12,42 @@ import {
   Alert,
 } from 'react-native';
 
+import { useDispatch,useSelector } from 'react-redux';
+import { loginUser } from '../../redux/actions';
+
+
 const Test = ({navigation}) => {
+  const dispatch= useDispatch()
+  const state=useSelector(state=>state)
  const [id,setId]=useState('');
  const [password,setPassword]=useState('');
 
 const uid="deepak";
 const pass="12345"
 
+useEffect(() => {
+  if(state.islogin){
+    navigation.navigate("Home")
+  }
+}, [state])
+
 
 
 const HandleSubmit=()=>{
-if(id=="" && password==""){
-    Alert.alert("pls enter valid input")
-}
-else if(id!==uid && password!==pass ){
-    Alert.alert("Id or Password does not match")
-    }
-else if(id==uid && password==pass ){
-navigation.navigate("Home")
-}
+  dispatch(loginUser())
+  console.log("state>>>>>>>",state)
+// if(id=="" && password==""){
+//     Alert.alert("pls enter valid input")
+// }
+// else if(id!==uid && password!==pass ){
+//     Alert.alert("Id or Password does not match")
+//     }
+// else if(id==uid && password==pass ){
+ 
+//navigation.navigate("Home")
+
+// }
+
 
 }
 
