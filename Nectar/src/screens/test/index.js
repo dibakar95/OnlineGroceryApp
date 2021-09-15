@@ -18,7 +18,7 @@ import { loginUser } from '../../redux/actions';
 
 const Test = ({navigation}) => {
   const dispatch= useDispatch()
-  const state=useSelector(state=>state)
+  const loginSelector=useSelector(state=>state)
  const [id,setId]=useState('');
  const [password,setPassword]=useState('');
 
@@ -26,16 +26,16 @@ const uid="deepak";
 const pass="12345"
 
 useEffect(() => {
-  if(state.islogin){
+  if(loginSelector.islogin){
     navigation.navigate("Home")
   }
-}, [state])
+}, [loginSelector])
 
 
 
 const HandleSubmit=()=>{
   dispatch(loginUser())
-  console.log("state>>>>>>>",state)
+ 
 // if(id=="" && password==""){
 //     Alert.alert("pls enter valid input")
 // }

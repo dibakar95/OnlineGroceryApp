@@ -1,19 +1,25 @@
 
-import {LOGIN_USER} from '../types/index'
+import {LOGIN_USER,LOGIN_USER_RESPONSE} from '../types/index'
 
 const intialState={
-    islogin:false
+    islogin:false,
+    data:[]
 }
 
-const loginReducer = (state = intialState, action) => {
+export default loginReducer = (state = intialState, action) => {
+    console.log("action",action.payload)
     console.log("reducer calll")
     switch (action.type) {
        case LOGIN_USER: return{
           ...state,
            islogin:true
        }
-       default: 
+      
+       case LOGIN_USER_RESPONSE:
+           return{
+        ...state, data:[...action.payload]
+       }
+      default: 
        return state
     }
  }
- export default loginReducer;
