@@ -1,7 +1,7 @@
 import { createStore,applyMiddleware } from 'redux';
 import loginReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from '../../rootSaga';
+import rootSaga from '../../saga';
 
  
 // Logger with default options

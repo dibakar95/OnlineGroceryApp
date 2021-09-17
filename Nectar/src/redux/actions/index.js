@@ -1,21 +1,35 @@
-import {LOGIN_USER,LOGIN_USER_RESPONSE} from '../types/index'
-
-
+import {types} from '../types';
 
 export function loginUser() {
-    console.log("loginUser")
-    return {
-       type: LOGIN_USER
-    }
- }
+  return {
+    type: types.LOGIN_USER,
+  };
+}
 
- export function loginUserResponse(payload) {
-    console.log("loginUserResponse",payload)
-   console.log("action call>>>")
- 
+export function loginUserResponse(payload) {
+  return {
+    type: types.LOGIN_USER_SUCCESS,
+    payload,
+  };
+}
+
+export function signUpUser(payload) {
    return {
-      type: LOGIN_USER_RESPONSE,
-      payload
-   
-}
-}
+     type: types.SIGN_UP,
+     payload:payload
+   };
+ }
+ 
+ export function SignUpUserSuccess(payload) {
+    console.log("actionsignupsuccesPayload",payload)
+   return {
+     type: types.SIGN_UP_SUCCESS,
+     payload:payload
+   };
+ }
+ export function signUpUserFailed(error) {
+   return {
+     type: types.SIGN_UP_FAILED,
+     error:error
+   };
+ }

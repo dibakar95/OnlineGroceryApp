@@ -1,25 +1,54 @@
 
-import {LOGIN_USER,LOGIN_USER_RESPONSE} from '../types/index'
+import {types} from '../types'
 
 const intialState={
+    isSignUp:false,
     islogin:false,
-    data:[]
+    title:"",
+    body:"",
+    id:"",
+error:''
+    
 }
 
 export default loginReducer = (state = intialState, action) => {
-    console.log("action",action.payload)
-    console.log("reducer calll")
+    console.log("reducerlogin",action.payload)
+   
     switch (action.type) {
-       case LOGIN_USER: return{
+       case types.SIGN_UP: return{
           ...state,
-           islogin:true
+          isSignUp:true
        }
       
-       case LOGIN_USER_RESPONSE:
+       case types.SIGN_UP_SUCCESS:
            return{
-        ...state, data:[...action.payload]
+        ...state,
+        isSignUp:false,
+        title:action.payload.title,
+        body:action.payload.body,
+        id:action.payload.id 
        }
-      default: 
+       case types.SIGN_UP_FAILED:
+        return{
+     ...state,
+     isSignUp:false,
+     error:action.error,
+    }
+       default: 
        return state
     }
  }
+
+//  switch (action.type) {
+//     case LOGIN_USER: return{
+//        ...state,
+//         islogin:true
+//     }
+   
+//     case LOGIN_USER_RESPONSE:
+//         return{
+//      ...state, data:[...action.payload]
+//     }
+//    default: 
+//     return state
+//  }

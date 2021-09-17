@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableOpacity } from "react-native";
 
 const CustomModal = ({modalVisible,setModalVisible,fruitData,fruitId}) => {
-    console.log("fruitId",fruitId)
+   
   
   return (
     <View style={styles.centeredView}>

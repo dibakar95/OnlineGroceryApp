@@ -13,28 +13,33 @@ import {
 } from 'react-native';
 
 import { useDispatch,useSelector } from 'react-redux';
-import { loginUser } from '../../redux/actions';
+import { signUpUser } from '../../redux/actions';
 
 
 const Test = ({navigation}) => {
   const dispatch= useDispatch()
-  const loginSelector=useSelector(state=>state)
- const [id,setId]=useState('');
- const [password,setPassword]=useState('');
+ // const loginSelector=useSelector(state=>state)
+ const [title,setTitle]=useState('')
+ const [body,setBody]=useState('')
+ const [id,setId]=useState()
 
 const uid="deepak";
 const pass="12345"
 
-useEffect(() => {
-  if(loginSelector.islogin){
-    navigation.navigate("Home")
-  }
-}, [loginSelector])
+// useEffect(() => {
+//   if(loginSelector.islogin){
+//     navigation.navigate("Home")
+//   }
+// }, [loginSelector])
 
 
 
 const HandleSubmit=()=>{
-  dispatch(loginUser())
+  dispatch(signUpUser({
+    title:title,
+    body:body,
+    id:id
+  }))
  
 // if(id=="" && password==""){
 //     Alert.alert("pls enter valid input")
@@ -67,9 +72,9 @@ const HandleSubmit=()=>{
             <TextInput
               placeholderTextColor="white"
               textAlign="center"
-              placeholder="Enter Your Id"
+              placeholder="Enter title"
               style={{fontSize: 20}}
-              onChangeText={(id)=>setId(id)} 
+              onChangeText={(text)=>setTitle(text)} 
             />
           </View>
 
@@ -82,10 +87,24 @@ const HandleSubmit=()=>{
             }}>
             <TextInput
               placeholderTextColor="white"
-              placeholder="Enter Your Password"
+              placeholder="Enter body"
               textAlign="center"
               style={{fontSize: 20}}
-               onChangeText={(password)=>setPassword(password)} />
+               onChangeText={(text)=>setBody(text)} />
+          </View>
+          <View
+            style={{
+              width: 400,
+              height: 60,
+              backgroundColor: 'blue',
+              marginTop: 20,
+            }}>
+            <TextInput
+              placeholderTextColor="white"
+              placeholder="Enter id"
+              textAlign="center"
+              style={{fontSize: 20}}
+               onChangeText={(text)=>setId(text)} />
           </View>
           <TouchableOpacity
           onPress={HandleSubmit}
